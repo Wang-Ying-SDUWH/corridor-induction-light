@@ -1,0 +1,64 @@
+C51 COMPILER V9.59.0.0   MAIN                                                              10/15/2019 20:51:07 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\keil5\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\main.l
+                    -st) TABS(2) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <ws2812.h>
+   2          #include <WS_single.h>
+   3          #include <WS_muti.h>
+   4          #include <stc12.h>
+   5          
+   6          u16 xdata i=0;
+   7          
+   8          void main()
+   9          { 
+  10   1        while(1)
+  11   1        {
+  12   2          if(k1==0)     //检测按键K1是否按下
+  13   2          { 
+  14   3            delay(1000);   //消除抖动，一般大约10ms
+  15   3            if(k1==0)  //再次判断按键是否按下
+  16   3            {
+  17   4               time++;
+  18   4            } 
+  19   3            if(time==4)
+  20   3              time=1;
+  21   3            while(!k1); 
+  22   3          }
+  23   2          switch(time)    //一个按键控制多种颜色
+  24   2          {
+  25   3            case 1:
+  26   3              WS2812_single(Color_Lib[0][0],Color_Lib[0][1],Color_Lib[0][2]);
+  27   3              break;
+  28   3            case 2:
+  29   3              WS2812_single(Color_Lib[1][0],Color_Lib[1][1],Color_Lib[1][2]);
+  30   3              break;
+  31   3            case 3:
+  32   3              WS2812_single(Color_Lib[2][0],Color_Lib[2][1],Color_Lib[2][2]);
+  33   3              break;
+  34   3            default:break;
+  35   3          }
+  36   2          keypros2();    //炫彩色按键函数
+  37   2        }
+  38   1       }
+  39          
+  40           
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    955    ----
+   CONSTANT SIZE    =     56    ----
+   XDATA SIZE       =    112    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     94      13
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       8
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
